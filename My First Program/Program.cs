@@ -158,15 +158,17 @@ namespace My_First_Program
                     {
                         if (int.Parse(result) == firstNumber - secondNumber)
                         {
-                            Console.WriteLine("You answer is correct!");
+                            Console.WriteLine("You answer is correct! Type any key for the next question");
+                            Console.ReadLine();
                             score++;
                         }
                         else
                         {
                             Console.WriteLine($@"Your answer was incorrect!
     The correct answer is {firstNumber - secondNumber}.
-    you have {4 - i} tries left.
+    you have {4 - i} tries left.Type any key for the next question
                             ");
+                            Console.ReadLine();
                         }
                     }
 
@@ -257,15 +259,17 @@ namespace My_First_Program
                     {
                         if (int.Parse(result) == firstNumber * secondNumber)
                         {
-                            Console.WriteLine("You answer is correct!");
+                            Console.WriteLine("You answer is correct! Type any key for the next question");
                             score++;
+                            Console.ReadLine();
                         }
                         else
                         {
                             Console.WriteLine($@"Your answer was incorrect!
     The correct answer is {firstNumber * secondNumber}.
-    you have {4 - i} tries left.
+    you have {4 - i} tries left. Type any key for the next question
                             ");
+                            Console.ReadLine();
                         }
                     }
 
