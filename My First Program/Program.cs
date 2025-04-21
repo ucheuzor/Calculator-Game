@@ -7,6 +7,7 @@ namespace My_First_Program
         static void Main(string[] args)
         {
             DateTime date = DateTime.UtcNow;
+            bool isGameOn = true;
 
             string name = GetName();
 
@@ -14,30 +15,35 @@ namespace My_First_Program
 
             string gameSelected = Console.ReadLine();
 
-            switch (gameSelected?.ToLower().Trim())
+            do
             {
-                case "a":
-                    AdditionGame("Addition Game");
-                    break;
+                switch (gameSelected?.ToLower().Trim())
+                {
+                    case "a":
+                        AdditionGame("Addition Game");
+                        break;
 
-                case "s":
-                    SubtractionGame("Subtraction Game");
-                    break;
+                    case "s":
+                        SubtractionGame("Subtraction Game");
+                        break;
 
-                case "m":
-                    MultiplicationGame("Multiplication Game");
-                    break;
-                case "d":
-                    DivisionGame("Division Game");
-                    break;
-                case "q":
-                    Console.WriteLine("Goodbye");
-                    Environment.Exit(1);
-                    break;
-                default:
-                    Console.WriteLine("Invalid Input");
-                    break;
-            }
+                    case "m":
+                        MultiplicationGame("Multiplication Game");
+                        break;
+                    case "d":
+                        DivisionGame("Division Game");
+                        break;
+                    case "q":
+                        Console.WriteLine("Goodbye");
+                        isGameOn = false;
+                        break;
+                    default:
+                        Console.WriteLine("Invalid Input");
+                        break;
+                }
+
+            } while (isGameOn);
+
 
             Console.ReadLine();
 
@@ -93,7 +99,7 @@ Q - Quit the program
                             Console.WriteLine($@"Your answer was incorrect!
     The correct answer is {firstNumber + secondNumber}.
     you have {4 - i} tries left.
-                            ");                
+                            ");
                         }
                     }
 
@@ -143,7 +149,7 @@ Q - Quit the program
 
             void DivisionGame(string message)
             {
-                var divisionNumber =  GetDivisionNumbers();
+                var divisionNumber = GetDivisionNumbers();
                 var firstNumber = divisionNumber[0];
                 var secondNumber = divisionNumber[1];
                 var score = 0;
@@ -159,7 +165,7 @@ Q - Quit the program
                         firstNumber = divisionNumber[0];
                         secondNumber = divisionNumber[1];
                     }
-                     
+
                     Console.WriteLine($"What is the result for the division of {firstNumber} / {secondNumber} ?");
                     var result = Console.ReadLine();
 
@@ -175,8 +181,9 @@ Q - Quit the program
                         {
                             Console.WriteLine($@"Your answer was incorrect!
     The correct answer is {firstNumber / secondNumber}.
-    you have {4 - i} tries left.
+    you have {4 - i} tries left. Type any key for the next question
                             ");
+                            Console.ReadLine();
                         }
                     }
 
@@ -227,8 +234,8 @@ Q - Quit the program
             int[] GetDivisionNumbers()
             {
                 var random = new Random();
-                int firstNumber = random.Next(1, 99);
-                int secondNumber = random.Next(1,99);
+                int firstNumber = random.Next(1, 100);
+                int secondNumber = random.Next(1, 100);
 
                 while (firstNumber % secondNumber != 0)
                 {
