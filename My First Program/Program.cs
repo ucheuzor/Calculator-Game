@@ -1,4 +1,5 @@
 ﻿using System;
+using static System.Formats.Asn1.AsnWriter;
 
 namespace My_First_Program
 {
@@ -133,7 +134,7 @@ namespace My_First_Program
                     };
                 }
 
-                gameHistory.Add($"{DateTime.Now} Addition: score = {score}");
+                AddToHistory(score, "Addition");
             }
 
             void SubtractionGame(string message)
@@ -182,6 +183,8 @@ namespace My_First_Program
                         gameSelected = Console.ReadLine();
                     };
                 }
+
+                AddToHistory(score, "Subtraction");
             }
 
             void DivisionGame(string message)
@@ -235,6 +238,8 @@ namespace My_First_Program
                         gameSelected = Console.ReadLine();
                     }
                 }
+                AddToHistory(score, "Division");
+
             }
 
             void MultiplicationGame(string message)
@@ -283,6 +288,8 @@ namespace My_First_Program
                         gameSelected = Console.ReadLine();
                     }
                 }
+
+                AddToHistory(score, "Multiplication");
             }
 
             void GetGameHistory()
@@ -299,6 +306,11 @@ namespace My_First_Program
                 Console.WriteLine("--------------------------------------------\n");
                 Console.WriteLine("Press any key to go back to the menu");
                 Console.ReadLine();
+            }
+
+            void AddToHistory( int gameScore, string gameType)
+            {
+                gameHistory.Add($"{DateTime.Now} {gameType}: {gameScore} pts");
             }
 
             int[] GetDivisionNumbers()
