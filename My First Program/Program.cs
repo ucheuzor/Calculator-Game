@@ -8,6 +8,7 @@ namespace My_First_Program
         {
             DateTime date = DateTime.UtcNow;
             bool isGameOn = true;
+            List<string> gameHistory = new List<string>();
 
             string name = GetName();
 
@@ -17,8 +18,12 @@ namespace My_First_Program
 
             do
             {
-                switch (gameSelected?.ToLower().Trim())
+                switch (gameSelected.ToLower().Trim())
                 {
+                    case "v":
+                        GetGameHistory();
+                        break;
+
                     case "a":
                         AdditionGame("Addition Game");
                         break;
@@ -38,7 +43,15 @@ namespace My_First_Program
                         isGameOn = false;
                         break;
                     default:
-                        Console.WriteLine("Invalid Input");
+                        Console.WriteLine(@" Invalid Input. Please try again.
+ what game would you like to play? Choose from the options below: 
+                                    A - Addition
+                                    S - Subtraction
+                                    M - Multiplication
+                                    D - Division
+                                    Q - Quit the program
+");
+                        gameSelected = Console.ReadLine();
                         break;
                 }
 
@@ -52,11 +65,12 @@ namespace My_First_Program
                 Console.WriteLine("------------------------------------------");
                 Console.WriteLine($"Hello {name}. Its {date}. This is your math game. That's great that you're working on improving yourself\n");
                 Console.WriteLine($@"what game would you like to play today? Choose from the options below: 
-A - Addition
-S - Subtraction
-M - Multiplication
-D - Division
-Q - Quit the program
+                                    V - View your game history
+                                    A - Addition
+                                    S - Subtraction
+                                    M - Multiplication
+                                    D - Division
+                                    Q - Quit the program
 ");
                 Console.WriteLine("--------------------------------------------");
             }
@@ -104,8 +118,14 @@ Q - Quit the program
                     }
 
                     if (i == 4)
+                    {
                         Console.WriteLine($"Game Over. Your Final score is {score}");
+                        Console.WriteLine("Press any key to go back to the main menu");
+                        Console.ReadLine();
+                    };
                 }
+
+                gameHistory.Add($"{DateTime.Now} Addition: score = {score}");
             }
 
             void SubtractionGame(string message)
@@ -159,7 +179,7 @@ Q - Quit the program
                     Console.Clear();
                     Console.WriteLine(message);
 
-                    if (i > 0)
+                    if (i > 0 && i < 5)
                     {
                         divisionNumber = GetDivisionNumbers();
                         firstNumber = divisionNumber[0];
@@ -174,6 +194,7 @@ Q - Quit the program
                         if (int.Parse(result) == firstNumber / secondNumber)
                         {
                             Console.WriteLine("You answer is correct. Type any key for the next question");
+                            score++;
                             Console.ReadLine();
 
                         }
@@ -231,6 +252,22 @@ Q - Quit the program
                 }
             }
 
+            void GetGameHistory()
+            {
+                Console.Clear();
+                Console.WriteLine("Game History");
+                Console.WriteLine("--------------------------------------------");
+
+                foreach (var game in gameHistory)
+                {
+                    Console.WriteLine(game);
+                }
+
+                Console.WriteLine("--------------------------------------------\n");
+                Console.WriteLine("Press any key to go back to the menu");
+                Console.ReadLine();
+            }
+
             int[] GetDivisionNumbers()
             {
                 var random = new Random();
@@ -239,8 +276,8 @@ Q - Quit the program
 
                 while (firstNumber % secondNumber != 0)
                 {
-                    firstNumber = random.Next(0, 99);
-                    secondNumber = random.Next(0, 99);
+                    firstNumber = random.Next(1, 100);
+                    secondNumber = random.Next(1, 100);
                 }
                 int[] result = [firstNumber, secondNumber];
                 return result;
