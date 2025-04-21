@@ -17,18 +17,18 @@ namespace My_First_Program
             switch (gameSelected?.ToLower().Trim())
             {
                 case "a":
-                    AdditionGame();
+                    AdditionGame("Addition Game");
                     break;
 
                 case "s":
-                    SubtractionGame();
+                    SubtractionGame("Subtraction Game");
                     break;
 
                 case "m":
-                    MultiplicationGame();
+                    MultiplicationGame("Multiplication Game");
                     break;
                 case "d":
-                    DivisionGame();
+                    DivisionGame("Division Game");
                     break;
                 case "q":
                     Console.WriteLine("Goodbye");
@@ -63,7 +63,7 @@ Q - Quit the program
                 return name;
             }
 
-            void AdditionGame()
+            void AdditionGame(string message)
             {
                 var random = new Random();
                 int firstNumber;
@@ -72,6 +72,9 @@ Q - Quit the program
 
                 for (int i = 0; i < 5; i++)
                 {
+                    Console.Clear();
+                    Console.WriteLine(message);
+
                     firstNumber = random.Next(1, 10);
                     secondNumber = random.Next(1, 10);
 
@@ -99,7 +102,7 @@ Q - Quit the program
                 }
             }
 
-            void SubtractionGame()
+            void SubtractionGame(string message)
             {
                 var random = new Random();
                 int firstNumber;
@@ -108,6 +111,9 @@ Q - Quit the program
 
                 for (int i = 0; i < 5; i++)
                 {
+                    Console.Clear();
+                    Console.WriteLine(message);
+
                     firstNumber = random.Next(1, 10);
                     secondNumber = random.Next(1, 10);
 
@@ -135,12 +141,51 @@ Q - Quit the program
                 }
             }
 
-            void DivisionGame()
+            void DivisionGame(string message)
             {
-                Console.WriteLine("division game selected!");
+                var divisionNumber =  GetDivisionNumbers();
+                var firstNumber = divisionNumber[0];
+                var secondNumber = divisionNumber[1];
+                var score = 0;
+
+                for (int i = 0; i < 5; i++)
+                {
+                    Console.Clear();
+                    Console.WriteLine(message);
+
+                    if (i > 0)
+                    {
+                        divisionNumber = GetDivisionNumbers();
+                        firstNumber = divisionNumber[0];
+                        secondNumber = divisionNumber[1];
+                    }
+                     
+                    Console.WriteLine($"What is the result for the division of {firstNumber} / {secondNumber} ?");
+                    var result = Console.ReadLine();
+
+                    if (!string.IsNullOrEmpty(result))
+                    {
+                        if (int.Parse(result) == firstNumber / secondNumber)
+                        {
+                            Console.WriteLine("You answer is correct. Type any key for the next question");
+                            Console.ReadLine();
+
+                        }
+                        else
+                        {
+                            Console.WriteLine($@"Your answer was incorrect!
+    The correct answer is {firstNumber / secondNumber}.
+    you have {4 - i} tries left.
+                            ");
+                        }
+                    }
+
+                    if (i == 4)
+                        Console.WriteLine($"Game Over. Your Final score is {score}");
+                }
             }
 
-            void MultiplicationGame()
+            void MultiplicationGame(string message)
             {
                 var random = new Random();
                 int firstNumber;
@@ -149,6 +194,9 @@ Q - Quit the program
 
                 for (int i = 0; i < 5; i++)
                 {
+                    Console.Clear();
+                    Console.WriteLine(message);
+
                     firstNumber = random.Next(1, 10);
                     secondNumber = random.Next(1, 10);
 
@@ -176,7 +224,20 @@ Q - Quit the program
                 }
             }
 
+            int[] GetDivisionNumbers()
+            {
+                var random = new Random();
+                int firstNumber = random.Next(1, 99);
+                int secondNumber = random.Next(1,99);
 
+                while (firstNumber % secondNumber != 0)
+                {
+                    firstNumber = random.Next(0, 99);
+                    secondNumber = random.Next(0, 99);
+                }
+                int[] result = [firstNumber, secondNumber];
+                return result;
+            }
         }
 
 
