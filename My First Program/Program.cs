@@ -12,7 +12,10 @@ namespace My_First_Program
 
             string name = GetName();
 
+            Console.WriteLine("------------------------------------------");
+            Console.WriteLine($"Hello {name}. Its {date}. This is your math game. That's great that you're working on improving yourself\n");
             Menu(name);
+
 
             string gameSelected = Console.ReadLine();
 
@@ -29,28 +32,29 @@ namespace My_First_Program
                         break;
 
                     case "s":
+                        Menu(name);
                         SubtractionGame("Subtraction Game");
                         break;
 
+
                     case "m":
+                        Menu(name);
                         MultiplicationGame("Multiplication Game");
                         break;
+
                     case "d":
+                        Menu(name);
                         DivisionGame("Division Game");
                         break;
+
                     case "q":
                         Console.WriteLine("Goodbye");
                         isGameOn = false;
                         break;
+
                     default:
-                        Console.WriteLine(@" Invalid Input. Please try again.
- what game would you like to play? Choose from the options below: 
-                                    A - Addition
-                                    S - Subtraction
-                                    M - Multiplication
-                                    D - Division
-                                    Q - Quit the program
-");
+                        Console.WriteLine("\nInvalid selection");
+                        Menu(name);
                         gameSelected = Console.ReadLine();
                         break;
                 }
@@ -62,8 +66,6 @@ namespace My_First_Program
 
             void Menu(string name)
             {
-                Console.WriteLine("------------------------------------------");
-                Console.WriteLine($"Hello {name}. Its {date}. This is your math game. That's great that you're working on improving yourself\n");
                 Console.WriteLine($@"what game would you like to play today? Choose from the options below: 
                                     V - View your game history
                                     A - Addition
@@ -105,15 +107,18 @@ namespace My_First_Program
                     {
                         if (int.Parse(result) == firstNumber + secondNumber)
                         {
-                            Console.WriteLine("You answer is correct!");
+                            Console.WriteLine("You answer is correct! \n  Type any key for the next question");
                             score++;
+                            Console.ReadLine();
                         }
                         else
                         {
                             Console.WriteLine($@"Your answer was incorrect!
     The correct answer is {firstNumber + secondNumber}.
     you have {4 - i} tries left.
+    Type any key for the next question
                             ");
+                            Console.ReadLine();
                         }
                     }
 
@@ -122,6 +127,9 @@ namespace My_First_Program
                         Console.WriteLine($"Game Over. Your Final score is {score}");
                         Console.WriteLine("Press any key to go back to the main menu");
                         Console.ReadLine();
+                        Console.Clear();
+                        Menu(name);
+                        gameSelected = Console.ReadLine();
                     };
                 }
 
@@ -163,7 +171,14 @@ namespace My_First_Program
                     }
 
                     if (i == 4)
+                    {
                         Console.WriteLine($"Game Over. Your Final score is {score}");
+                        Console.WriteLine("Press any key to go back to the main menu");
+                        Console.ReadLine();
+                        Console.Clear();
+                        Menu(name);
+                        gameSelected = Console.ReadLine();
+                    };
                 }
             }
 
@@ -209,7 +224,14 @@ namespace My_First_Program
                     }
 
                     if (i == 4)
+                    {
                         Console.WriteLine($"Game Over. Your Final score is {score}");
+                        Console.WriteLine("Press any key to go back to the main menu");
+                        Console.ReadLine();
+                        Console.Clear();
+                        Menu(name);
+                        gameSelected = Console.ReadLine();
+                    }
                 }
             }
 
@@ -248,7 +270,14 @@ namespace My_First_Program
                     }
 
                     if (i == 4)
+                    {
                         Console.WriteLine($"Game Over. Your Final score is {score}");
+                        Console.WriteLine("Press any key to go back to the main menu");
+                        Console.ReadLine();
+                        Console.Clear();
+                        Menu(name);
+                        gameSelected = Console.ReadLine();
+                    }
                 }
             }
 
