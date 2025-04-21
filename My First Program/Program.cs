@@ -101,7 +101,38 @@ Q - Quit the program
 
             void SubtractionGame()
             {
-                Console.WriteLine("Subtraction game selected!");
+                var random = new Random();
+                int firstNumber;
+                int secondNumber;
+                var score = 0;
+
+                for (int i = 0; i < 5; i++)
+                {
+                    firstNumber = random.Next(1, 10);
+                    secondNumber = random.Next(1, 10);
+
+                    Console.WriteLine($"What is the result for the subtraction of {firstNumber} - {secondNumber} ?");
+                    var result = Console.ReadLine();
+
+                    if (!string.IsNullOrEmpty(result))
+                    {
+                        if (int.Parse(result) == firstNumber - secondNumber)
+                        {
+                            Console.WriteLine("You answer is correct!");
+                            score++;
+                        }
+                        else
+                        {
+                            Console.WriteLine($@"Your answer was incorrect!
+    The correct answer is {firstNumber - secondNumber}.
+    you have {4 - i} tries left.
+                            ");
+                        }
+                    }
+
+                    if (i == 4)
+                        Console.WriteLine($"Game Over. Your Final score is {score}");
+                }
             }
 
             void DivisionGame()
@@ -111,7 +142,38 @@ Q - Quit the program
 
             void MultiplicationGame()
             {
-                Console.WriteLine("Multiplication game selected!");
+                var random = new Random();
+                int firstNumber;
+                int secondNumber;
+                var score = 0;
+
+                for (int i = 0; i < 5; i++)
+                {
+                    firstNumber = random.Next(1, 10);
+                    secondNumber = random.Next(1, 10);
+
+                    Console.WriteLine($"What is the multiplication of {firstNumber} * {secondNumber} ?");
+                    var result = Console.ReadLine();
+
+                    if (!string.IsNullOrEmpty(result))
+                    {
+                        if (int.Parse(result) == firstNumber * secondNumber)
+                        {
+                            Console.WriteLine("You answer is correct!");
+                            score++;
+                        }
+                        else
+                        {
+                            Console.WriteLine($@"Your answer was incorrect!
+    The correct answer is {firstNumber * secondNumber}.
+    you have {4 - i} tries left.
+                            ");
+                        }
+                    }
+
+                    if (i == 4)
+                        Console.WriteLine($"Game Over. Your Final score is {score}");
+                }
             }
 
 
