@@ -6,10 +6,9 @@ namespace My_First_Program
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("please type your name");
-
-            string name = Console.ReadLine();
             DateTime date = DateTime.UtcNow;
+
+            string name = GetName();
 
             Menu(name);
 
@@ -40,6 +39,28 @@ namespace My_First_Program
                     break;
             }
 
+            void Menu(string name)
+            {
+                Console.WriteLine("------------------------------------------");
+                Console.WriteLine($"Hello {name}. Its {date}. This is your math game. That's great that you're working on improving yourself\n");
+                Console.WriteLine($@"what game would you like to play today? Choose from the options below: 
+A - Addition
+S - Subtraction
+M - Multiplication
+D - Division
+Q - Quit the program
+");
+                Console.WriteLine("--------------------------------------------");
+            }
+
+            string GetName()
+            {
+                Console.WriteLine("please type your name");
+
+                string name = Console.ReadLine();
+                return name;
+            }
+
             void AdditionGame()
             {
                 Console.WriteLine("Addition game selected!");
@@ -60,19 +81,7 @@ namespace My_First_Program
                 Console.WriteLine("Multiplication game selected!");
             }
 
-            void Menu(string name)
-            {
-                Console.WriteLine("------------------------------------------");
-                Console.WriteLine($"Hello {name}. Its {date}. This is your math game. That's great that you're working on improving yourself\n");
-                Console.WriteLine($@"what game would you like to play today? Choose from the options below: 
-A - Addition
-S - Subtraction
-M - Multiplication
-D - Division
-Q - Quit the program
-");
-                Console.WriteLine("--------------------------------------------");
-            }
+
         }
 
 
